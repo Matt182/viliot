@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Main</title>
+        <?php include 'dependencies.html'?>
+    </head>
+    <body>
+        <div class="container">
+            <?php foreach($response['topics'] as $topic) {
+                ?>
+                <div class="panel panel-default col-md-offset-4 col-md-4">
+                    <div class="panel-body">
+                        <a href="/topic?id=<?= $topic['id'] ?>"><?= $topic['title'] ?></a>
+                    </div>
+                </div>
+                <?php
+            } ?>
+
+        </div>
+    </body>
+</html>

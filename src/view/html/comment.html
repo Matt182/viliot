@@ -1,0 +1,34 @@
+<?php if (!isset($comment)) {
+    $comment = $response['comment'];
+}?>
+
+<div class='row col-sm-offset-1' id="sub<?= $comment['id'] ?>">
+    <div class='panel panel-default'>
+        <div class='panel-heading'>
+            <span> <?= $comment['time'] ?></span>
+            <button type="button" onclick="deleteComment(<?= $comment['id'] ?>, <?=  $comment['topic_id'] ?> )"><span class="glyphicon glyphicon-remove"></span></button>
+        </div>
+        <div class='panel-body'>
+            <p>
+                <?= $comment['body'] ?>
+            </p>
+                <div class="row">
+                    <form name="createComment<?= $comment['id'] ?>">
+                        <div class="input-group">
+                            <input type="hidden" name="topicId" value="<?= $comment['topic_id'] ?>">
+                            <input type="hidden" name="parentId" value="<?= $comment['id'] ?>">
+                            <input class="form-control" type="text" name="body">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="ajaxCreateComment(<?= $comment['id'] ?>)">Отправить</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+
+        </div>
+    </div>
+    <div id="children<?= $comment['id'] ?>">
+        <?php if($comment['has_child']==1) \viliot\view\Viewer::renderCommentsTree($comment['children']); ?>
+    </div>
+</div>

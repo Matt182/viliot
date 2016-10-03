@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Topic</title>
+        <?php include 'dependencies.html'?>
+        <script type="text/javascript" src="/src/view/js/ajaxFunctions.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1><?= $response['topic']['title'] ?></h1>
+            <p>
+                <?= $response['topic']['body'] ?>
+            </p>
+            <form name="createComment0" action="/topic/createComment" method="post">
+                <input type="hidden" name="topicId" value="<?= $response['topic']['id'] ?>">
+                <input type="hidden" name="parentId" value="0">
+                <input class="form-control" type="text" name="body">
+                <input class="btn btn-default" type="button" onclick="ajaxCreateComment(0)" value="Коментировать">
+            </form>
+            <p id="children0">
+
+                <?php \viliot\view\Viewer::renderCommentsTree($response['comments']); ?>
+
+            </p>
+        </div>
+
+    </body>
+</html>

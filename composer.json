@@ -1,0 +1,8 @@
+{
+    "name": "matt/viliot",
+    "autoload": {
+        "psr-4": {
+            "viliot\\": "src/"
+        }
+    }
+}
